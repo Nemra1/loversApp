@@ -1,4 +1,4 @@
-.item.item-complex .item-content {
+.item-menu.item.item-complex .item-content {
 	background-color: #444444;
 	color: #FFF;
 	font-weight: 500;
@@ -43,4 +43,133 @@
 
 .big {
 	font-size: 20px;
+}
+
+td-cards {
+  display: block;
+}
+
+td-card {
+  position: absolute;
+  left: 50%;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  margin-left: -150px;
+  width: 300px;
+  height: 300px;
+
+  border: 1px solid #999;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 6px;
+}
+
+td-card .image {
+	width: 100%;
+}
+
+td-card img {
+  width: 100%;
+	height: 295px;
+  border-radius: 6px;
+}
+
+.yes-text {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  color: rgb(111, 250, 111);
+  opacity: 0;
+}
+.no-text {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: rgb(255, 115, 115);
+  opacity: 0;
+}
+
+.fade {
+  -webkit-transition: 0.2s opacity linear;
+  transition: 0.2s opacity linear;
+  opacity: 0;
+}
+
+.spinner svg {
+	width: 28px;
+	height: 28px;
+	stroke: #FFF;
+	fill: #FFF;
+}
+
+.close {
+	color: gray !important;
+}
+
+/*--------------------------------------*/
+.message {
+  padding: 10px;
+}
+.message-left {
+  text-align: left;
+}
+.message-right {
+  text-align: right;
+}
+.message > img {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.message > div {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+}
+.message-left > div {
+  margin-left: 10px;
+  background-color: #e6e5eb;
+}
+.message-right > div {
+  margin-right: 10px;
+  background-color: #158ffe;
+  color: white;
+}
+.message > div:before {
+  content: "\00a0";
+  display: block;
+  height: 16px;
+  width: 9px;
+  position: absolute;
+  bottom: -7.5px;
+}
+.message-left > div:before {
+  background-color: #e6e5eb;
+  left: 10px;
+  -webkit-transform: rotate(70deg) skew(5deg);
+}
+.message-right > div:before {
+  background-color: #158ffe;
+  right: 10px;
+  -webkit-transform: rotate(118deg) skew(-5deg);
+}
+.message-footer input {
+  width: 100%;
+  border: 0;
+  background-color: #f4f4f4
+}
+
+.presence {
+  border-radius: 50%;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #ab9ba9;
+}
+
+.online {
+  background: #99d04a;
 }

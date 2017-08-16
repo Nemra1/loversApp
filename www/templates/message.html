@@ -1,0 +1,40 @@
+<ion-modal-view cache-view="false" view-title="Messages">
+	<ion-header-bar class="bar-positive">
+		<h1 class="title">Messages to {{match.currentMatchUser.name}}</h1>
+		<div class="buttons">
+			<button class="button button-icon icon ion-close" ng-click="match.closeMessageModal()"></button>
+		</div>
+	</ion-header-bar>
+
+	<ion-content has-bouncing="true" class="has-header has-footer" delegate-handle="userMessageScroll">
+		<div ng-repeat="message in match.messages">
+			<div ng-if="message.uid === match.currentMatchUser.$id">
+				<div class="message message-left">
+					<img ng-src="{{match.currentMatchUser.avatar}}"/>
+					<div>
+						<span ng-bind-html="message.body"></span>
+						<br/>
+						{{message.timestamp | date:'short' }}
+					</div>
+				</div>
+			</div>
+			<div ng-if="message.uid === match.currentUser.$id">
+				<div class="message message-right">
+					<div>
+						<span ng-bind-html="message.body"></span>
+						<br/>
+						{{message.timestamp | date:'short' }}
+					</div>
+					<img ng-src="{{match.currentUser.avatar}}"/>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+
+	<form name="sendMessageForm" ng-submit="match.sendMessage()" novalidate>
+		<ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+			<input ng-model="match.message" class="item-input" value="" placeholder="Send a message..." required minlength="1" maxlength="1500" msd-elastic/>
+			<button class="button button-icon icon ion-android-send" type="submit" ng-disabled="!match.message || match.message === ''"></button>
+		</ion-footer-bar>
+	</form>
+</ion-modal-view>

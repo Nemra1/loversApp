@@ -1,0 +1,20 @@
+<ion-modal-view>
+
+	<ion-header-bar>
+		<h1 class="title">Profile</h1>
+		<div class="buttons">
+			<button class="button button-clear close" ng-click="home.closeModal()">Close</button>
+		</div>
+	</ion-header-bar>
+
+	<ion-content>
+		<div class="item item-body">
+			<h2>{{home.info.name}}</h2>
+			<p>Age: {{home.info.age}}</p>
+			<p>Gender: {{home.info.gender}}</p>
+			<p>Location: {{home.info.location}}</p>
+			<p>About: {{home.info.bio}}</p>
+		</div>
+	</ion-content>
+
+</ion-modal-view>

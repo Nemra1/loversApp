@@ -54,6 +54,7 @@ app.factory('Auth', function($firebaseAuth, $firebaseObject, $state, $http, $q, 
 		},
 
 		logout: function() {
+			ref.child('profiles').child(auth.$getAuth().uid).update({isOnline: false});
 			return auth.$signOut();
 		},
 
@@ -71,6 +72,23 @@ app.factory('Auth', function($firebaseAuth, $firebaseObject, $state, $http, $q, 
 
 		getProfilesByAge: function(age) {
 			return $firebaseArray(ref.child('profiles').orderByChild('age').startAt(18).endAt(age));
+		},
+
+		setOnline: function(uid){
+			var connected = $firebaseObject(ref.child(".info/connected"));
+			var online = $firebaseObject(ref.child('profiles').child(uid));
+
+			connected.$watch(function(){
+				if(connected.$value === true){
+					ref.child('profiles').child(uid).update({
+						isOnline: true
+					});
+
+					online.$ref().onDisconnect().update({
+						isOnline: false
+					});
+				}
+			});
 		}
 
 	};

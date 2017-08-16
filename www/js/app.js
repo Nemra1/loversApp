@@ -9,7 +9,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var app = angular.module('starter', ['ionic', 'firebase'])
+var app = angular.module('starter', ['ionic', 'firebase', 'ionic.contrib.ui.tinderCards'])
 
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
@@ -49,6 +49,11 @@ var app = angular.module('starter', ['ionic', 'firebase'])
 				templateUrl: 'templates/profile.html',
 				controller: 'ProfileCtrl as prof',
 				resolve: {
+					history: function($ionicHistory) {
+						$ionicHistory.nextViewOptions({
+							disableBack: true
+						})
+					},
 					auth: function($state, Auth) {
 						return Auth.requireAuth().catch(function() {
 							$state.go('login');
@@ -66,14 +71,65 @@ var app = angular.module('starter', ['ionic', 'firebase'])
 	})
 
 	.state('app.home', {
-		url: '/home',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/home.html',
-				controller: 'HomeCtrl as home'
-			}
-		}
-	})
+    url: '/home',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/home.html',
+        controller: 'HomeCtrl as home',
+        resolve: {
+          auth: function($state, Auth) {
+            return Auth.requireAuth().catch(function() {
+              $state.go('login');
+            });
+          },
+
+          uid: function(Auth) {
+            return Auth.requireAuth()
+              .then(function(auth) {
+                return auth.uid;
+              });
+          }
+        }
+      }
+    }
+  })
+
+	.state('app.match', {
+    url: '/match',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/match.html',
+        controller: 'MatchCtrl as match',
+        resolve: {
+					history: function($ionicHistory) {
+						$ionicHistory.nextViewOptions({
+							disableBack: true
+						})
+					},
+          auth: function($state, Auth) {
+            return Auth.requireAuth().catch(function() {
+              $state.go('login');
+            });
+          },
+
+          uid: function(Auth) {
+            return Auth.requireAuth()
+              .then(function(auth) {
+								Auth.setOnline(auth.uid);
+                return auth.uid;
+              });
+          },
+
+					profile: function(Auth) {
+						return Auth.requireAuth()
+			        .then(function(auth){
+			          return Auth.getProfile(auth.uid).$loaded();
+			        })
+					}
+        }
+      }
+    }
+  })
 
 	.state('app.settings', {
 		url: '/settings',
