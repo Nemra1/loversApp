@@ -1,0 +1,46 @@
+.item.item-complex .item-content {
+	background-color: #444444;
+	color: #FFF;
+	font-weight: 500;
+	padding-bottom: 30px;
+}
+
+.item-menu.item.item-complex {
+	border: none !important;
+}
+
+.menu.menu-left {
+	width: 100%;
+	background-color: #444444;
+}
+
+.icon-menu.icon {
+	font-size: 25px;
+	margin-right: 10px;
+	border: 2px solid;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-radius: 50%;
+}
+
+.landing {
+	background: url(../img/home.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.facebook {
+	max-width: 200px;
+	margin: 0 auto;
+}
+
+.facebook-button {
+	position: absolute;
+	top: 500px;
+}
+
+.big {
+	font-size: 20px;
+}
